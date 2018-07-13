@@ -1,18 +1,18 @@
 version: '3'
 services:
   application:
-    # build: ./
-    image : odoo:11
+    image: odoo:11
     depends_on:
       - db
     ports:
       - "8069:8069"
+      - "8072:8072"
     volumes:
       - odoo-application-data:/var/lib/odoo
       - ./myaddons:/mnt/extra-addons
     networks:
         - aylin_odoo
-    # command: -d aylin-odoo --db-filter ^aylin --limit-time-cpu 2400 --limit-time-real 2400
+    command: -d aylin-odoo --db-filter ^aylin --limit-time-cpu 2400 --limit-time-real 2400
   db:
     image: postgres:latest
     environment:
