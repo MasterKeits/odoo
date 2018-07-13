@@ -1,7 +1,8 @@
 version: '3'
 services:
   application:
-    build: ./
+    # build: ./
+    image : odoo:11
     depends_on:
       - db
     ports:
