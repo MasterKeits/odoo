@@ -20,6 +20,19 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: web_responsive
+#: model:ir.ui.view,arch_db:web_responsive.menu
+msgid "<i>Searching:</i>"
+msgstr ""
+
+#. module: web_responsive
+#: model:ir.ui.view,arch_db:web_responsive.menu
+msgid ""
+"<span class=\"hidden-xs\">\n"
+"                                &amp;nbsp;|&amp;nbsp;\n"
+"                            </span>"
+msgstr ""
+
+#. module: web_responsive
 #: model:ir.ui.view,arch_db:web_responsive.webclient_bootstrap
 msgid "<span class=\"sr-only\">Toggle App Drawer</span>"
 msgstr "<span class=\"sr-only\">Izmjeni izbornik aplikacije</span>"
@@ -35,31 +48,11 @@ msgid "Apps"
 msgstr "Apikacije"
 
 #. module: web_responsive
-#: model:ir.model.fields,field_description:web_responsive.field_res_users_chatter_position
-msgid "Chatter Position"
-msgstr ""
-
-#. module: web_responsive
-#: model:ir.model,name:web_responsive.model_ir_http
-msgid "HTTP routing"
-msgstr ""
-
-#. module: web_responsive
 #: model:ir.ui.view,arch_db:web_responsive.menu
 msgid "More <b class=\"caret\"/>"
 msgstr "Više <b class=\"caret\"/>"
 
 #. module: web_responsive
-#: selection:res.users,chatter_position:0
-msgid "Normal"
-msgstr ""
-
-#. module: web_responsive
-#: selection:res.users,chatter_position:0
-msgid "Sided"
-msgstr ""
-
-#. module: web_responsive
-#: model:ir.model,name:web_responsive.model_res_users
-msgid "Users"
+#: model:ir.ui.view,arch_db:web_responsive.menu
+msgid "No Search Supplied."
 msgstr ""
