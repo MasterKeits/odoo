@@ -1,17 +1,14 @@
 version: '3'
 services:
   application:
-    # image: odoo:11
-    build: ./
+    image: odoo:11
     depends_on:
       - db
     ports:
       - "8069:8069"
     volumes:
       - odoo-application-data:/var/lib/odoo
-      - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
-      - ./myaddons:/mnt/myaddons
+      - ./myaddons:/mnt/extra-addons
     networks:
         - aylin_odoo
     command: --db-filter aylin-odoo --limit-time-cpu 2400 --limit-time-real 2400
