@@ -2,6 +2,7 @@
 
 <!--
     Copyright 2016 LasLabs Inc.
+    Copyright 2018 Alexandre Díaz
     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
 
@@ -12,7 +13,7 @@
               name="App Drawer - Web Client"
               >
 
-        <xpath expr="//div[@class='o_sub_menu']" position="replace" />
+        <xpath expr="//div[hasclass('o_sub_menu')]" position="replace" />
 
         <xpath expr="//t[@t-set='head']" position="inside">
             <meta charset="utf-8" />
@@ -94,6 +95,10 @@
 
         </xpath>
 
+        <xpath expr="//div[hasclass('o_main')]" position="attributes">
+            <attribute name="t-attf-class">o_main o_chatter_position_{{ json.loads(session_info)['chatter_position'] }}</attribute>
+        </xpath>
+
     </template>
 
     <template id="menu_secondary"
@@ -101,7 +106,7 @@
               name="App Drawer - Secondary Menu"
               >
 
-        <xpath expr="//div[@class='o_sub_menu_content']/t" position="replace">
+        <xpath expr="//div[hasclass('o_sub_menu_content')]/t" position="replace">
 
             <t t-foreach="menu_data['children']" t-as="menu">
                 <ul style="display: none"
@@ -178,7 +183,7 @@
             <attribute name="t-att-data-menu-name">menu['name']</attribute>
         </xpath>
 
-        <xpath expr="//span[@class='oe_menu_text']" position="replace">
+        <xpath expr="//span[hasclass('oe_menu_text')]" position="replace">
             <t t-if="display_images">
                 <img t-attf-src="/web/image/ir.ui.menu/{{ menu['id'] }}/web_icon_data"
                      class="app-drawer-icon-app img-rounded"
@@ -203,37 +208,22 @@
               name="App Drawer - Menu"
               >
 
-        <xpath expr="//ul[contains(@class, 'oe_systray')]" position="replace" />
+        <xpath expr="//ul[hasclass('oe_systray')]" position="replace" />
 
-        <xpath expr="//ul[contains(@class, 'oe_user_menu_placeholder')]" position="replace" />
+        <xpath expr="//ul[hasclass('oe_user_menu_placeholder')]" position="replace" />
 
-        <xpath expr="//ul[contains(@class, 'oe_application_menu_placeholder')]" position="replace">
+        <xpath expr="//ul[hasclass('oe_application_menu_placeholder')]" position="replace">
 
             <div class="panel-default app-drawer-app-panel" id="appDrawerAppMenu">
                 <div class="panel-heading" id="appDrawerAppPanelHead">
                     <div class="col-xs-6">
                         <h4 class="app-drawer-panel-title pull-left">
-                            <a class="app-drawer-icon-close drawer-toggle hidden-xs">
+                            <a class="app-drawer-icon-close drawer-toggle">
                                 <i class="fa fa-lg fa-chevron-left"
                                    t-translation="off"
                                    aria-hidden="true"
                                    />
                                 Apps
-                            </a>
-                            <span class="hidden-xs">
-                                &amp;nbsp;|&amp;nbsp;
-                            </span>
-                            <a class="app-drawer-icon-search drawer-search-open">
-                                <i class="fa fa-lg fa-search"
-                                   t-translation="off"
-                                   aria-hidden="true"
-                                   />
-                            </a>
-                            <a class="app-drawer-icon-search drawer-search-close">
-                                <i class="fa fa-lg fa-close"
-                                   t-translation="off"
-                                   aria-hidden="true"
-                                   />
                             </a>
                         </h4>
                     </div>
@@ -248,57 +238,21 @@
                     </div>
                 </div>
                 <div class="panel-body" id="appDrawerAppPanelBody">
-                    <div id="appDrawerApps"
-                        class="row oe_application_menu_placeholder"
+                    <ul class="row list-unstyled oe_application_menu_placeholder"
                         style="display: none;">
-                        <t t-foreach="menu_data['children']" t-as="menu">
-                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center mt16">
-                                <t t-call="web.menu_link">
-                                    <t t-set="display_images" t-value="1" />
-                                </t>
-                            </div>
-                            <!-- Provide breakpoints on necessary viewports for proper row heights -->
-                            <t t-if="(menu_index + 1) % 6 == 0">
-                                <div class="clearfix visible-lg-block" />
+                        <li t-foreach="menu_data['children']" t-as="menu"
+                            class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center mt16">
+                            <t t-call="web.menu_link">
+                                <t t-set="display_images" t-value="1" />
                             </t>
-                            <t t-if="(menu_index + 1) % 4 == 0">
-                                <div class="clearfix visible-md-block" />
-                            </t>
-                            <t t-if="(menu_index + 1) % 3 == 0">
-                                <div class="clearfix visible-sm-block" />
-                            </t>
-                            <t t-if="(menu_index + 1) % 2 == 0">
-                                <div class="clearfix visible-xs-block" />
-                            </t>
-                        </t>
-                        <div id="menu_more_container" class="dropdown" style="display: none;">
+                        </li>
+                        <li id="menu_more_container" class="dropdown" style="display: none;">
                             <a class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
                             <ul id="menu_more" class="dropdown-menu"></ul>
-                        </div>
-                    </div>
-                    <ul id="appDrawerMenuSearch"
-                        class="row list-unstyled"
-                        style="display: none;">
-                        <div class="panel panel-info app-drawer-search-panel">
-                            <div class="panel-heading">
-                                <h2>
-                                    <i>Searching:</i>
-                                    <input id="appDrawerSearchInput" class="menu-search-query"/>
-                                </h2>
-                            </div>
-                            <div class="panel-body">
-                                <ul id="appDrawerSearchResults"
-                                    class="row list-unstyled oe_application_menu_placeholder">
-                                    No Search Supplied.
-                                </ul>
-                            </div>
-                        </div>
+                        </li>
                     </ul>
                 </div>
             </div>
-
-            <div class="app-drawer-search-action" />
-
         </xpath>
     </template>
 
