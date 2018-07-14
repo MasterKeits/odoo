@@ -6,13 +6,12 @@ services:
       - db
     ports:
       - "8069:8069"
-      - "8072:8072"
     volumes:
       - odoo-application-data:/var/lib/odoo
       - ./myaddons:/mnt/extra-addons
     networks:
         - aylin_odoo
-    command: -d aylin-odoo --db-filter ^aylin --limit-time-cpu 2400 --limit-time-real 2400
+    # command: -d aylin-odoo --db-filter ^aylin --limit-time-cpu 2400 --limit-time-real 2400
   db:
     image: postgres:latest
     environment:
@@ -26,6 +25,16 @@ services:
     networks:
         - aylin_odoo
     restart: always
+  # nginx:
+  #   image: nginx:latest
+  #   ports:
+  #       - 8069:80
+  #   volumes:
+  #       - ./default.conf:/etc/nginx/conf.d/default.conf
+  #   networks:
+  #       - aylin_odoo
+  #   depends_on:
+  #       - application
 volumes:
   odoo-application-data:
   odoo-db-data:
