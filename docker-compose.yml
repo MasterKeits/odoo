@@ -20,13 +20,14 @@ services:
         - PGDATA=/var/lib/postgresql/data/pgdata
     expose:
         - 5432
-    volumes:
-        - odoo-db-data:/var/lib/postgresql/data/pgdata
+    # volumes:
+    #     - odoo-db-data:/var/lib/postgresql/data/pgdata
     networks:
         - aylin_odoo
     restart: always
 volumes:
   odoo-application-data:
+  # odoo-db-data:
 networks:
     aylin_odoo:
         driver: bridge
