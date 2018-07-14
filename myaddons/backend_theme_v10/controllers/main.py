@@ -10,7 +10,7 @@ DEFAULT_IMAGE = '/backend_theme_v10/static/src/img/material-background.jpg'
 
 class DasboardBackground(Controller):
 
-    @route(['/dashboard'], type='http', auth='user', website=False)
+    @route(['/dashboard'], type='https', auth='user', website=False)
     def dashboard(self, **post):
         user = request.env.user
         company = user.company_id
