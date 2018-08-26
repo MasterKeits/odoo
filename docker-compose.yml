@@ -11,7 +11,8 @@ services:
       - ./myaddons:/mnt/extra-addons
     networks:
         - aylin_odoo
-    # command: -d aylin-odoo --db-filter aylin-odoo --limit-time-cpu 2400 --limit-time-real 2400
+    command: --limit-time-cpu 2400 --limit-time-real 2400 -d aylin_odoo -u aylintech_changes
+    # command: --limit-time-cpu 2400 --limit-time-real 2400 -d aylin-odoo
   db:
     image: postgres:latest
     environment:
